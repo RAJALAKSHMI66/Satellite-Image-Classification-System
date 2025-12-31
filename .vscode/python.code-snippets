@@ -1,0 +1,41 @@
+{
+    "Import ML Libraries": {
+        "prefix": "imp-ml",
+        "body": [
+            "import numpy as np",
+            "import pandas as pd",
+            "import matplotlib.pyplot as plt",
+            "import seaborn as sns",
+            "import tensorflow as tf",
+            "from tensorflow import keras",
+            "from sklearn.model_selection import train_test_split",
+            "$0"
+        ]
+    },
+    "Load and Preprocess Image": {
+        "prefix": "load-img",
+        "body": [
+            "img = cv2.imread('${1:image_path}')",
+            "img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)",
+            "img = cv2.resize(img, (${2:224}, ${3:224}))",
+            "img = img.astype('float32') / 255.0",
+            "$0"
+        ]
+    },
+    "Create CNN Model": {
+        "prefix": "cnn-model",
+        "body": [
+            "model = keras.Sequential([",
+            "    keras.layers.Conv2D(${1:64}, (3, 3), activation='relu', input_shape=${2:(224, 224, 3)}),",
+            "    keras.layers.MaxPooling2D((2, 2)),",
+            "    keras.layers.Conv2D(${3:128}, (3, 3), activation='relu'),",
+            "    keras.layers.MaxPooling2D((2, 2)),",
+            "    keras.layers.Flatten(),",
+            "    keras.layers.Dense(${4:512}, activation='relu'),",
+            "    keras.layers.Dropout(${5:0.5}),",
+            "    keras.layers.Dense(${6:num_classes}, activation='softmax')",
+            "])",
+            "$0"
+        ]
+    }
+}

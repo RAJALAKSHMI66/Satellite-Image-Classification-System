@@ -1,0 +1,46 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Train Model",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/train.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Python: Evaluate Model",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/evaluate.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--model_path", "./models/satellite_classifier_final.h5",
+                "--test_dir", "./data/test"
+            ]
+        },
+        {
+            "name": "Python: Flask API",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/api/flask_api.py",
+            "console": "integratedTerminal",
+            "env": {
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "1"
+            }
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        }
+    ]
+}
