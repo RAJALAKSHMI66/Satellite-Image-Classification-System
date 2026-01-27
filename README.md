@@ -1,38 +1,38 @@
 # Satellite Image Classification System
 
-A comprehensive machine learning system for classifying satellite images using deep learning techniques. This project includes a Python backend with TensorFlow/Keras models and a React frontend for visualization and predictions.
+A comprehensive **software-based image processing system** for classifying satellite images using predefined algorithms and feature-based techniques. This project includes a Python backend for image analysis and a React frontend for visualization and predictions.
 
-**Repository**: https://github.com/RAJALAKSHMI66/Satellite-Image-Classification-System
+**Repository**: [https://github.com/RAJALAKSHMI66/Satellite-Image-Classification-System](https://github.com/RAJALAKSHMI66/Satellite-Image-Classification-System)
 
 ## Features
 
-- **Image Classification**: Classify satellite images into 10 different land use categories
-- **REST API**: Flask-based API for model inference and predictions
-- **Interactive Dashboard**: React-based web interface for visualization and analysis
-- **Data Processing**: Complete pipeline for data preparation and augmentation
-- **Model Training**: Customizable training pipeline with multiple model options
-- **Evaluation Metrics**: Comprehensive evaluation with confusion matrices and accuracy metrics
-- **Multi-band Support**: Handle RGB and multispectral satellite imagery
-- **Real-time Processing**: Stream processing capabilities for live satellite feeds
+* **Image Classification**: Classify satellite images into 10 different land use categories using feature extraction and rule-based classification logic
+* **REST API**: Flask-based API for image processing and classification results
+* **Interactive Dashboard**: React-based web interface for visualization and analysis
+* **Data Processing**: Complete pipeline for data preparation, normalization, and transformation
+* **Processing Pipeline**: Configurable image-processing workflow with multiple processing options
+* **Evaluation Metrics**: Accuracy calculations, confusion matrices, and result summaries
+* **Multi-band Support**: Handle RGB and multispectral satellite imagery
+* **Batch Processing**: Support for processing multiple satellite images efficiently
 
 ## Project Structure
 
 ```
 .
 ├── src/                      # Python backend source code
-│   ├── train.py             # Model training script
-│   ├── train_improved.py    # Advanced training pipeline
-│   ├── evaluate.py          # Model evaluation
+│   ├── train.py             # Classification configuration setup
+│   ├── train_improved.py    # Enhanced processing pipeline
+│   ├── evaluate.py          # Classification evaluation
 │   ├── predict.py           # Prediction utilities
-│   ├── model.py             # Model architecture
+│   ├── model.py             # Classification logic and rules
 │   ├── data_loader.py       # Data loading utilities
-│   ├── data_generator.py    # Data augmentation
-│   ├── improved_data_generator.py # Enhanced augmentation
-│   ├── convert_model.py     # Model format conversion
+│   ├── data_generator.py    # Data transformation utilities
+│   ├── improved_data_generator.py # Enhanced transformations
+│   ├── convert_model.py     # Format conversion utilities
 │   └── __init__.py
 ├── api/                     # Flask API & Web Interfaces
 │   ├── flask_api.py         # REST API endpoints
-│   └── gradio_demo.py       # Gradio interface for testing
+│   └── gradio_demo.py       # Interactive demo interface
 ├── sky-classifier/          # React Frontend Application
 │   ├── src/
 │   │   ├── components/      # React components
@@ -49,7 +49,7 @@ A comprehensive machine learning system for classifying satellite images using d
 │   └── tsconfig.json       # TypeScript config
 ├── notebooks/              # Jupyter Analysis Notebooks
 │   ├── 01_data_exploration.ipynb
-│   ├── 02_model_training.ipynb
+│   ├── 02_processing_pipeline.ipynb
 │   └── 03_evaluation.ipynb
 ├── utils/                  # Utility Functions
 │   ├── data_preparation.py
@@ -62,45 +62,15 @@ A comprehensive machine learning system for classifying satellite images using d
 ├── requirements.txt        # Python dependencies
 ├── README.md              # This file
 ├── GUIDE.md               # Detailed usage guide
-├── SETUP_EDGE_FUNCTION.md # Edge Function setup guide
-├── EDGE_FUNCTION_FIXES.md # Troubleshooting guide
 └── FIX_SUMMARY.md         # Complete fix documentation
-```
-
-## 🔧 Edge Function Setup
-
-The system uses Supabase edge functions for cloud-based image classification. To set up the edge function:
-
-1. **Quick Setup** (5 minutes): Follow [SETUP_EDGE_FUNCTION.md](SETUP_EDGE_FUNCTION.md)
-2. **Troubleshooting**: See [EDGE_FUNCTION_FIXES.md](EDGE_FUNCTION_FIXES.md)
-3. **Full Details**: Check [FIX_SUMMARY.md](FIX_SUMMARY.md)
-
-**Key Steps:**
-
-```bash
-# Install Supabase CLI
-npm install -g supabase
-
-# Login to Supabase
-supabase login
-
-# Deploy edge function
-cd sky-classifier
-supabase functions deploy classify-image --project-id whgkjiirhycnxsyyumdc
-
-# Set API key secret
-supabase secrets set LOVABLE_API_KEY="your_api_key" --project-id whgkjiirhycnxsyyumdc
 ```
 
 ## Prerequisites
 
-- **Python**: 3.8 or higher
-- **Node.js**: 16 or higher (for React frontend)
-- **TensorFlow**: 2.10+
-- **CUDA**: 11.x (optional, for GPU acceleration)
-- **Git**: For cloning the repository
-- **Supabase CLI**: For edge function deployment (optional)
-- **Lovable API Key**: For AI-based classification (optional)
+* **Python**: 3.8 or higher
+* **Node.js**: 16 or higher (for React frontend)
+* **NumPy / OpenCV / PIL**: For image processing
+* **Git**: For cloning the repository
 
 ## Quick Start
 
@@ -128,8 +98,6 @@ python api/flask_api.py
 ```
 
 For detailed setup instructions, see [GUIDE.md](GUIDE.md)
-
-For edge function setup, see [SETUP_EDGE_FUNCTION.md](SETUP_EDGE_FUNCTION.md)
 
 ## Installation
 
@@ -173,7 +141,7 @@ npm run build
 
 ## Usage
 
-### Training the Model
+### Running the Classification Pipeline
 
 ```bash
 python src/train.py
@@ -202,49 +170,36 @@ result = predict_image('path/to/image.jpg')
 print(result)
 ```
 
-## Model Information
+## Classification Information
 
-### Architecture
+### Categories
 
-- **Base Model**: ResNet50 with ImageNet pre-training
-- **Input Size**: 256x256 RGB images
-- **Output Classes**: 10 land use categories
-  - Annual Crop
-  - Forest
-  - Herbaceous Vegetation
-  - Highway
-  - Industrial
-  - Pasture
-  - Permanent Crop
-  - Residential
-  - River
-  - Sea/Lake
+The system classifies satellite images into the following land use categories:
 
-### Performance
+* Annual Crop
+* Forest
+* Herbaceous Vegetation
+* Highway
+* Industrial
+* Pasture
+* Permanent Crop
+* Residential
+* River
+* Sea/Lake
 
-- **Training Accuracy**: ~97%
-- **Validation Accuracy**: ~95%
-- **Test Accuracy**: ~94%
+### Dataset
 
-## Dataset
+The system operates on satellite imagery such as the EuroSAT dataset:
 
-The model is trained on the EuroSAT dataset:
-
-- **Total Images**: 27,000+
-- **Image Size**: 64x64 to 256x256 pixels
-- **Bands**: RGB or 11-band multispectral
-
-To download and prepare the dataset:
-
-```bash
-python setup_data.py
-```
+* **Total Images**: 27,000+
+* **Image Size**: 64x64 to 256x256 pixels
+* **Bands**: RGB or multispectral
 
 ## API Endpoints
 
 ### POST /predict
 
-Predict image class
+Process and classify an image
 
 ```bash
 curl -X POST -F "file=@image.jpg" http://localhost:5000/predict
@@ -258,23 +213,23 @@ Health check endpoint
 curl http://localhost:5000/health
 ```
 
-### GET /model-info
+### GET /system-info
 
-Get model information
+Get system configuration details
 
 ```bash
-curl http://localhost:5000/model-info
+curl http://localhost:5000/system-info
 ```
 
 ## Configuration
 
 Edit `config.yaml` to customize:
 
-- Model architecture
-- Training parameters
-- Data paths
-- API settings
-- Logging options
+* Processing parameters
+* Classification rules
+* Data paths
+* API settings
+* Logging options
 
 ## Testing
 
@@ -284,89 +239,19 @@ Run tests:
 pytest tests/
 ```
 
-Run specific test:
-
-```bash
-pytest tests/test_model.py -v
-```
-
-## Data Preparation
-
-The project includes utility scripts for data preparation:
-
-```bash
-# Check data quality
-python utils/quality_check.py
-
-# Visualize augmentations
-python utils/augmentation_preview.py
-
-# Prepare dataset
-python utils/data_preparation.py
-```
-
-## Model Conversion
-
-Convert models to different formats:
-
-```bash
-python src/convert_model.py
-```
-
-Supported formats:
-
-- TensorFlow SavedModel
-- ONNX
-- TensorFlow Lite
-- TensorFlow.js
-
 ## Performance Optimization
 
-### GPU Acceleration
-
-The project automatically uses GPU if CUDA is available. To force CPU:
-
-```bash
-export CUDA_VISIBLE_DEVICES=""
-```
-
-### Batch Processing
-
-For faster inference on multiple images:
-
-```python
-from src.predict import batch_predict
-results = batch_predict(['image1.jpg', 'image2.jpg'])
-```
-
-## Troubleshooting
-
-### Out of Memory
-
-- Reduce batch size in config.yaml
-- Use model quantization
-- Reduce image size
-
-### Slow Training
-
-- Enable GPU acceleration
-- Increase batch size
-- Use mixed precision training
-
-### API Connection Issues
-
-- Ensure Flask server is running
-- Check firewall settings
-- Verify port 5000 is available
+* Enable batch processing for large datasets
+* Reduce image resolution if processing is slow
+* Adjust configuration parameters for faster execution
 
 ## Future Improvements
 
-- [ ] Support for multi-spectral images
-- [ ] Real-time processing pipeline
-- [ ] Model ensemble support
-- [ ] Mobile app deployment
-- [ ] Automated model versioning
-- [ ] Enhanced visualization tools
+* [ ] Improved multispectral support
+* [ ] Real-time image stream processing
+* [ ] Advanced visualization tools
+* [ ] Mobile-friendly frontend
+* [ ] Automated configuration management
 
 ## Contributing
 
@@ -380,28 +265,9 @@ results = batch_predict(['image1.jpg', 'image2.jpg'])
 
 This project is licensed under the MIT License - see LICENSE file for details.
 
-## Citation
-
-If you use this project, please cite:
-
-```
-@software{satellite_classification_2025,
-  title={Satellite Image Classification System},
-  author={Your Name},
-  year={2025},
-  url={https://github.com/RAJALAKSHMI66/Satellite-Image-Classification-System}
-}
-```
-
 ## Support
 
-For support, open an issue on GitHub or contact [your email].
-
-## Acknowledgments
-
-- EuroSAT dataset creators
-- TensorFlow and PyTorch communities
-- Contributors and testers
+For support, open an issue on GitHub.
 
 ---
 
